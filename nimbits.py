@@ -12,6 +12,10 @@ class Nimbits:
     def set_endpoint(self, endpoint):
         self.endpoint = endpoint
 
+    def get_tree(self):
+        query = {'email':self.email,'key':self.key}
+        return self.__send_request('GET', 'tree', query)
+
     def get_value(self, id_entity):
         query = {'email':self.email,'key':self.key,'id':id_entity}
         return self.__send_request('GET', 'value', query)
@@ -19,10 +23,6 @@ class Nimbits:
     def set_value(self, id_entity, **params):
         query = {'email':self.email,'key':self.key,'action':'update','id':id_entity}
         return self.__send_request('POST', 'value', query, params)
-
-    def create_entity(self, **params):
-        query = {'email':self.email,'key':self.key,'action':'create'}
-        return self.__send_request('POST', 'entity', query, params)
 
     def __build_query(self, params):
         query = ''
@@ -44,4 +44,4 @@ class Nimbits:
         if req.status_code == 200:
             return req.json()
         else:
-            return req.text
+            return None
