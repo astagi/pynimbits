@@ -11,4 +11,7 @@ setup(name="libnimbits",
       author_email="stagi.andrea@gmail.com",
       url="https://github.com/astagi/libnimbits",
       keywords= "nimbits raspberry domotics",
+      install_requires=[
+        "requests",
+      ],
       zip_safe = True)
